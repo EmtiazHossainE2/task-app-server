@@ -46,8 +46,13 @@ async function run() {
             res.send(result)
         })
 
-        
-
+        // delete todo
+        app.delete('/todos/:id',  async (req, res) => {
+            const id = req.params.id
+            const filter = { _id : ObjectId(id) }
+            const result = await todosCollection.deleteOne(filter)
+            res.send(result)
+        })
 
     }
     finally {
