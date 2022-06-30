@@ -29,7 +29,7 @@ async function run() {
 
         //get all todos
         app.get('/todos', async (req, res) => {
-            const query = {}
+            const query = {completed : req.query.completed ? true : false}
             const todos = await todosCollection.find(query).toArray()
             res.send(todos)
         })
@@ -45,6 +45,8 @@ async function run() {
             const result = await todosCollection.updateOne(filter, updateDoc);
             res.send(result)
         })
+
+        
 
 
     }
